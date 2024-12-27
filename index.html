@@ -4,32 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculate!</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="calculator">
-      <div class="display">123456789</div>
+    <div id="calculator">
+      <div class="display"></div>
       <div class="buttons">
-        <button class="top-3-buttons">AC</button>
-        <button class="top-3-buttons">+/-</button>
-        <button class="top-3-buttons">%</button>
-        <button class="right-side">/</button>
-        <button class="right-side">*</button>
-        <button class="right-side">-</button>
-        <button class="right-side">+</button>
-        <button class="digits">7</button>
-        <button class="digits">8</button>
-        <button class="digits">9</button>
-        <button class="digits">4</button>
-        <button class="digits">5</button>
-        <button class="digits">6</button>
-        <button class="digits">1</button>
-        <button class="digits">2</button>
-        <button class="digits">3</button>
+        <button id="clear" class="top-3-buttons">AC</button>
+        <button id="signToggle" class="top-3-buttons">+/-</button>
+        <button id="%" class="top-3-buttons">%</button>
+        <button id="/" class="right-side">/</button>
+        <button id="*" class="right-side">*</button>
+        <button id="-" class="right-side">-</button>
+        <button id="+" class="right-side">+</button>
+        <button id="7" class="digits">7</button>
+        <button id="8" class="digits">8</button>
+        <button id="9" class="digits">9</button>
+        <button id="4" class="digits">4</button>
+        <button id="5" class="digits">5</button>
+        <button id="6" class="digits">6</button>
+        <button id="1" class="digits">1</button>
+        <button id="2" class="digits">2</button>
+        <button id="3" class="digits">3</button>
       </div>
       <div class="bottom row">
-        <button class="digits">0</button>
-        <button class="digits">.</button>
-        <button class="right-side-buttons">=</button>
+        <button id="0" class="digits">0</button>
+        <button id="." class="digits">.</button>
+        <button id="=" class="right-side-buttons">=</button>
       </div>
     </div>
   </body>
