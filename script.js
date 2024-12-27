@@ -30,37 +30,43 @@ const calcBody = document.querySelector("#calculator");
 const display = document.querySelector("#display");
 const buttons = document.querySelector("#buttons");
 
+// getters and setters for displaying content on the calculator "screen"
 function getDisplayContent() {
     return display.textContent;
 }
-
 function setDisplayContent(content) {
     display.textContent = content;
 }
-
 function addDisplayContent(content) {
     display.textContent += content;
 }
 
+
 function displayDigit(buttonID) {
     addDisplayContent(buttonID);
 }
-
 function clear(){
     setDisplayContent("");
 }
-
 const clearButton = document.getElementById("clear");
 clearButton.addEventListener("click", () => {
     clear();
     theBigThree.length = 0;
+    setDisplayContent(0);
 });
 
+// max size of the big three array
 const maxSize = 3;
+// theBigThree is the list of num1, operator, and num2
 let theBigThree = [];
+setDisplayContent(0);
+// boolean flags used to avoid weird behaviour if the user enters multiple operators in a row ex: "+++"
 operatorWasLastEntry = false;
+equalsWasLastEntry = false;
 
 function operatorButtonLogic(operator) {
+    // because the number and operator are both added to the array (2 items), we have to check 
+    // if the
     if (getDisplayContent() != "" && !operatorWasLastEntry && theBigThree.length == maxSize-1) {
         resultAndOperator = equals();
         theBigThree[0] = resultAndOperator[0];
@@ -94,21 +100,24 @@ divideButton.addEventListener("click", () => {
 
 
 function equals() {
-    theBigThree.push(getDisplayContent());
-    operatorWasLastEntry = true;
-
-    console.log("the big three: " + theBigThree);
-
-    num1 = parseInt(theBigThree[0]);
-    operator = theBigThree[1];
-    num2 = parseInt(theBigThree[2]);
+    if (!equalsWasLastEntry) {
+        theBigThree.push(getDisplayContent());
+        operatorWasLastEntry = true;
     
-    result = operate(num1, operator, num2);
-    setDisplayContent(result);
-    console.log(result);
-    theBigThree.length = 0;
-    console.log(theBigThree);
-    return [result, operator];
+        // debug print
+        console.log("the big three: " + theBigThree);
+    
+        num1 = parseInt(theBigThree[0]);
+        operator = theBigThree[1];
+        num2 = parseInt(theBigThree[2]);
+        
+        result = operate(num1, operator, num2);
+        setDisplayContent(result);
+        console.log(result);
+        theBigThree.length = 0;
+        console.log(theBigThree);
+        return [result, operator];
+    }
 }
 
 
