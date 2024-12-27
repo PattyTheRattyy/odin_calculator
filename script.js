@@ -42,9 +42,6 @@ function addDisplayContent(content) {
 }
 
 
-function displayDigit(buttonID) {
-    addDisplayContent(buttonID);
-}
 function clear(){
     setDisplayContent("");
 }
@@ -52,14 +49,12 @@ const clearButton = document.getElementById("clear");
 clearButton.addEventListener("click", () => {
     clear();
     theBigThree.length = 0;
-    setDisplayContent(0);
 });
 
 // max size of the big three array
 const maxSize = 3;
 // theBigThree is the list of num1, operator, and num2
 let theBigThree = [];
-setDisplayContent(0);
 // boolean flags used to avoid weird behaviour if the user enters multiple operators in a row ex: "+++"
 operatorWasLastEntry = false;
 equalsWasLastEntry = false;
@@ -100,7 +95,7 @@ divideButton.addEventListener("click", () => {
 
 
 function equals() {
-    if (!equalsWasLastEntry) {
+    if (!operatorWasLastEntry && !equalsWasLastEntry && theBigThree.length != 0) {
         theBigThree.push(getDisplayContent());
         operatorWasLastEntry = true;
     
@@ -131,14 +126,21 @@ equalsButton.addEventListener("click", () => {
 const digitButtons = document.querySelectorAll(".digits");
 digitButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        if (operatorWasLastEntry) {
-            clear();
-            displayDigit(button.id);
-            operatorWasLastEntry = false;
-            equalsWasLastEntry = false;
+
+        if (getDisplayContent() != 0) {
+            if (operatorWasLastEntry) {
+                clear();
+                operatorWasLastEntry = false;
+                equalsWasLastEntry = false;
+            }
+            addDisplayContent(button.id)
         } else {
-            displayDigit(button.id);
+            if (operatorWasLastEntry) {
+                clear();
+                operatorWasLastEntry = false;
+                equalsWasLastEntry = false;
+            }
+            setDisplayContent(button.id)
         }
-        
     });
 });
