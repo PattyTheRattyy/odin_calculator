@@ -23,3 +23,25 @@ function operate(operator, num1, num2){
             return divideOperation(num1, num2);
     }
 }
+
+const calcBody = document.querySelector("#calculator");
+const display = document.querySelector(".display");
+
+displayContent = "";
+function displayDigit(buttonID) {
+    display.textContent += buttonID;
+    displayContent = display.textContent;
+}
+
+const clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", () => {
+    display.textContent = "";
+});
+
+
+const digitButtons = document.querySelectorAll(".digits");
+digitButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        displayDigit(button.id);
+    });
+});
