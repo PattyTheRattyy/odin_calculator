@@ -1,3 +1,5 @@
+
+
 function addOperation(num1, num2){
     return num1 + num2;
 }
@@ -58,8 +60,7 @@ const maxSize = 3;
 let theBigThree = [];
 operatorWasLastEntry = false;
 
-const addButton = document.querySelector("#plus");
-addButton.addEventListener("click", () => {
+function operatorButtonLogic(operator) {
     if (getDisplayContent() != "" && !operatorWasLastEntry && theBigThree.length == maxSize-1) {
         resultAndOperator = equals();
         theBigThree[0] = resultAndOperator[0];
@@ -67,26 +68,28 @@ addButton.addEventListener("click", () => {
     }
     else if (getDisplayContent() != "" && !operatorWasLastEntry || getDisplayContent() != "" && equalsWasLastEntry){
         theBigThree.push(getDisplayContent())
-        theBigThree.push("+");
+        theBigThree.push(operator);
         console.log("the big three: " + theBigThree)
         operatorWasLastEntry = true;
         console.log("operator was pressed: " + operatorWasLastEntry)
     } 
-    else {
-        console.log("empty display or operator was last entry");
-    }
+}
+
+const addButton = document.querySelector("#plus");
+addButton.addEventListener("click", () => {
+    operatorButtonLogic("+");
 });
 const subtractButton = document.querySelector("#minus");
 subtractButton.addEventListener("click", () => {
-    setDisplayContent("-");
+    operatorButtonLogic("-");
 });
 const multiplyButton = document.querySelector("#multiply");
 multiplyButton.addEventListener("click", () => {
-    setDisplayContent("*");
+    operatorButtonLogic("*");
 });
 const divideButton = document.querySelector("#divide");
 divideButton.addEventListener("click", () => {
-    setDisplayContent("/");
+    operatorButtonLogic("/");
 });
 
 
