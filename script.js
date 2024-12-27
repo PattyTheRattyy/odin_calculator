@@ -25,12 +25,19 @@ function operate(operator, num1, num2){
 }
 
 const calcBody = document.querySelector("#calculator");
-const display = document.querySelector(".display");
 
-displayContent = "";
+function getDisplayContent() {
+    const display = document.querySelector(".display");
+    return display.textContent;
+}
+
+function setDisplayContent(content) {
+    const display = document.querySelector(".display");
+    display.textContent += content;
+}
+
 function displayDigit(buttonID) {
-    display.textContent += buttonID;
-    displayContent = display.textContent;
+    addDisplayContent(buttonID);
 }
 
 const clearButton = document.querySelector("#clear");
