@@ -29,16 +29,17 @@ function operate(num1, operator, num2){
 const calcBody = document.querySelector("#calculator");
 const display = document.querySelector("#display");
 const buttons = document.querySelector("#buttons");
+const displayContent = document.querySelector("#displayContent");
 
 // getters and setters for displaying content on the calculator "screen"
 function getDisplayContent() {
-    return display.textContent;
+    return displayContent.textContent;
 }
 function setDisplayContent(content) {
-    display.textContent = content;
+    displayContent.textContent = content;
 }
 function addDisplayContent(content) {
-    display.textContent += content;
+    displayContent.textContent += content;
 }
 
 
