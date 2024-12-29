@@ -26,9 +26,9 @@ function operate(num1, operator, num2){
     }
 }
 
+// references to elements
 const calcBody = document.querySelector("#calculator");
 const display = document.querySelector("#display");
-const buttons = document.querySelector("#buttons");
 const displayContent = document.querySelector("#displayContent");
 
 // getters and setters for displaying content on the calculator "screen"
@@ -38,11 +38,14 @@ function getDisplayContent() {
 function setDisplayContent(content) {
     displayContent.textContent = content;
 }
+const maxDisplayChars = 13;
 function addDisplayContent(content) {
-    displayContent.textContent += content;
+    if (display.textContent.length < maxDisplayChars) {
+        displayContent.textContent += content;
+    }
 }
 
-
+// clear function and button that resets display
 function clear(){
     setDisplayContent("");
 }
