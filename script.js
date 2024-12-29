@@ -144,3 +144,10 @@ digitButtons.forEach((button) => {
         }
     });
 });
+
+const funButton = document.querySelector("#fun");
+funButton.addEventListener("click", () => {
+    calcBody.classList.remove('animate'); 
+    void calcBody.offsetWidth; // trigger a reflow to reset the animation <- this line is from chatgpt
+    calcBody.classList.add('animate'); 
+});
