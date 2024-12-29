@@ -49,6 +49,15 @@ body {
     border: 5px solid black;
     border-radius: 10px;
     background-color: #c1ffcd;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#displayContent {
+    margin-right: 20px;
+    font-size: x-large;
 }
 
 .top-3-buttons {
@@ -71,7 +80,10 @@ body {
 }
 .digits:active {
     opacity: 85%;
+}
 
+.top-3-buttons, .right-side-buttons, .digits {
+    font-size: large;
 }
 
 #fun {
@@ -94,12 +106,14 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 
 button {
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     margin: 5px;
     border: 2px solid black;
     border-radius: 50%;
