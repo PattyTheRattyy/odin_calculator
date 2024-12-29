@@ -24,11 +24,12 @@ body {
 
 
 #calculator {
-    background-color: aqua;
+    background-color: #60a797;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+
 
 
     border: 5px solid black;
@@ -37,7 +38,7 @@ body {
     width: 250px;
     height: 400px;
 
-    box-shadow: 0px 0px 50px 10px blue;
+    box-shadow: 0px 0px 50px 10px black;
     
 }
 
@@ -47,24 +48,45 @@ body {
     width: 220px;
     border: 5px solid black;
     border-radius: 10px;
-    background-color: white;
+    background-color: #c1ffcd;
 }
 
 .top-3-buttons {
     background-color: lightgray;
 }
+.top-3-buttons:active {
+    background-color: hsl(0, 0%, 90%);
+}
 
 .right-side-buttons {
     background-color: orange;
+}
+.right-side-buttons:active {
+    background-color: hsl(39, 100%, 60%);
 
 }
 
+.digits {
+    background-color: white;
+}
+.digits:active {
+    opacity: 85%;
+
+}
+
+#fun {
+    background-color: white;
+}
+#fun:active {
+    opacity: 85%;
+
+}
+
+
 .bottom-row {
     display: flex;
-    flex-grow: 2;
     justify-content: flex-start;
     align-items: flex-end;
-
 }
 
 #button-container {
@@ -72,25 +94,26 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    
-    
-
 }
 
-
-
-#equals {
-    flex-grow: 2;
-}
 
 button {
     height: 40px;
     width: 40px;
-    margin: 10px;
+    margin: 5px;
     border: 2px solid black;
     border-radius: 50%;
 }
 
-button:active {
-    opacity: 80%;
+.animate {
+    animation: funColorAnimation 5s ease-out forwards;
 }
+
+@keyframes funColorAnimation {
+    0% {box-shadow: 0px 0px 50px 10px red;}
+    25% {box-shadow: 0px 0px 50px 10px lawngreen; }
+    50% {box-shadow: 0px 0px 50px 10px aqua; }
+    75% { box-shadow: 0px 0px 50px 10px blue;}
+    100% {box-shadow: 0px 0px 50px 10px black;}
+}
+
