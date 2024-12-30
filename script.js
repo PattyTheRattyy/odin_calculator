@@ -141,7 +141,7 @@ const digitButtons = document.querySelectorAll(".digits");
 digitButtons.forEach((button) => {
     button.addEventListener("click", () => {
 
-        if (getDisplayContent() != 0) {
+        if (getDisplayContent() !== 0) {
             if (operatorWasLastEntry) {
                 clear();
                 operatorWasLastEntry = false;
