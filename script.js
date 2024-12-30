@@ -11,7 +11,7 @@ function multiplyOperation(num1, num2){
 }
 function divideOperation(num1, num2){
     if (num2 != 0) {
-        return num1 / num2;
+        return parseFloat((num1 / num2).toFixed(5));
     }
     else {
         return "Go hit the math textbooks.";
@@ -42,7 +42,9 @@ function getDisplayContent() {
     return displayContent.textContent;
 }
 function setDisplayContent(content) {
-    displayContent.textContent = content;
+    if (display.textContent.length < maxDisplayChars) {
+        displayContent.textContent = content;
+    }
 }
 const maxDisplayChars = 13;
 function addDisplayContent(content) {
@@ -112,9 +114,9 @@ function equals() {
         // debug print
         console.log("the big three: " + theBigThree);
     
-        num1 = parseInt(theBigThree[0]);
+        num1 = parseFloat(theBigThree[0]);
         operator = theBigThree[1];
-        num2 = parseInt(theBigThree[2]);
+        num2 = parseFloat(theBigThree[2]);
         
         result = operate(num1, operator, num2);
         setDisplayContent(result);
@@ -166,12 +168,12 @@ funButton.addEventListener("click", () => {
 // convert to percentage decimal
 const percentButton = document.querySelector("#percent");
 percentButton.addEventListener("click", () => {
-    setDisplayContent(parseInt(getDisplayContent()) / 100);
+    setDisplayContent(parseFloat(getDisplayContent()) / 100);
 });
 
 // toggle sign
 positive = true;
 const signToggle = document.querySelector("#signToggle");
 signToggle.addEventListener("click", () => {
-    setDisplayContent(parseInt(getDisplayContent() * (-1)));
+    setDisplayContent(parseFloat(getDisplayContent() * (-1)));
 });
