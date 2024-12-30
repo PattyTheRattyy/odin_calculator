@@ -1,5 +1,5 @@
 
-
+// operation functions
 function addOperation(num1, num2){
     return num1 + num2;
 }
@@ -10,6 +10,7 @@ function multiplyOperation(num1, num2){
     return num1 * num2;
 }
 function divideOperation(num1, num2){
+    // prevent division by 0
     if (num2 != 0) {
         return parseFloat((num1 / num2).toFixed(13));
     }
@@ -37,19 +38,21 @@ const calcBody = document.querySelector("#calculator");
 const display = document.querySelector("#display");
 const displayContent = document.querySelector("#displayContent");
 
-// getters and setters for displaying content on the calculator "screen"
+// functions to get, set, and modify the display's content
 function getDisplayContent() {
     return displayContent.textContent;
 }
-const maxDisplayChars = 13;
+const maxDisplayChars = 13; // limit to prevent overflow
 function setDisplayContent(content) {
     lengthOfNum = content.toString().length;
+    // enforce character limit
     if (lengthOfNum < maxDisplayChars) {
         console.log(content);
         displayContent.textContent = content;
     }
 }
 function addDisplayContent(content) {
+    // enforce character limit
     if (display.textContent.length < maxDisplayChars) {
         displayContent.textContent += content;
     }
@@ -65,6 +68,7 @@ clearButton.addEventListener("click", () => {
     theBigThree.length = 0;
 });
 
+
 // max size of the big three array
 const maxSize = 3;
 // theBigThree is the list of num1, operator, and num2
@@ -73,23 +77,24 @@ let theBigThree = [];
 operatorWasLastEntry = false;
 equalsWasLastEntry = false;
 
+/* This function handles the logic for the operator buttons:
+- If theBigThree is full (num1, operator, num2), compute the result before adding the new operator.
+- Prevents issues with consecutive operator presses or operations following equals. */
 function operatorButtonLogic(operator) {
-    // because the number and operator are both added to the array (2 items), we have to check 
-    // if the
     if (getDisplayContent() != "" && !operatorWasLastEntry && theBigThree.length == maxSize-1) {
-        resultAndOperator = equals();
-        theBigThree[0] = resultAndOperator[0];
-        theBigThree[1] = resultAndOperator[1];
+        resultAndOperator = equals(); // compute result
+        theBigThree[0] = resultAndOperator[0]; // store result
+        theBigThree[1] = resultAndOperator[1]; // store new operator
     }
+    // add display value and operator to theBigThree
     else if (getDisplayContent() != "" && !operatorWasLastEntry || getDisplayContent() != "" && equalsWasLastEntry){
         theBigThree.push(getDisplayContent())
         theBigThree.push(operator);
-        console.log("the big three: " + theBigThree)
         operatorWasLastEntry = true;
-        console.log("operator was pressed: " + operatorWasLastEntry)
     } 
 }
 
+// operation buttons
 const addButton = document.querySelector("#plus");
 addButton.addEventListener("click", () => {
     operatorButtonLogic("+");
@@ -108,27 +113,28 @@ divideButton.addEventListener("click", () => {
 });
 
 
+/*
+- Handles the equals button functionality
+- Operates on num1, operator, and num2 (stored in theBigThree array).
+*/
 function equals() {
+    // prevents execution if the last button was an operator or no input exists.
     if (!operatorWasLastEntry && !equalsWasLastEntry && theBigThree.length != 0) {
         theBigThree.push(getDisplayContent());
         operatorWasLastEntry = true;
     
-        // debug print
-        console.log("the big three: " + theBigThree);
-    
+        // extracting values for the operation
         num1 = parseFloat(theBigThree[0]);
         operator = theBigThree[1];
         num2 = parseFloat(theBigThree[2]);
         
+        // compute the result and reset theBigThree
         result = operate(num1, operator, num2);
         setDisplayContent(result);
-        console.log(result);
         theBigThree.length = 0;
-        console.log(theBigThree);
         return [result, operator];
     }
 }
-
 
 const equalsButton = document.querySelector("#equals");
 equalsButton.addEventListener("click", () => {
@@ -140,13 +146,14 @@ equalsButton.addEventListener("click", () => {
 const digitButtons = document.querySelectorAll(".digits");
 digitButtons.forEach((button) => {
     button.addEventListener("click", () => {
-
-        if (getDisplayContent() !== 0) {
+        // prevents invalid numbers like 00123 or 00.234
+        if (getDisplayContent() != 0 || button.id == "." || getDisplayContent().includes(".")) {
             if (operatorWasLastEntry) {
                 clear();
                 operatorWasLastEntry = false;
                 equalsWasLastEntry = false;
             }
+            // prevents invalud numbers like 1....23 or 124..3
             if (button.id != "." || button.id == "." && !getDisplayContent().includes(".")) {
                 addDisplayContent(button.id);
             }
@@ -169,13 +176,13 @@ funButton.addEventListener("click", () => {
     calcBody.classList.add('animate'); 
 });
 
-// convert to percentage decimal
+// convert to percentage decimal button
 const percentButton = document.querySelector("#percent");
 percentButton.addEventListener("click", () => {
     setDisplayContent(parseFloat(getDisplayContent()) / 100);
 });
 
-// toggle sign
+// toggle sign button
 positive = true;
 const signToggle = document.querySelector("#signToggle");
 signToggle.addEventListener("click", () => {
