@@ -10,7 +10,13 @@ function multiplyOperation(num1, num2){
     return num1 * num2;
 }
 function divideOperation(num1, num2){
-    return num1 / num2;
+    if (num2 != 0) {
+        return num1 / num2;
+    }
+    else {
+        return "Go hit the math textbooks.";
+    }
+    
 }
 
 function operate(num1, operator, num2){
@@ -137,21 +143,35 @@ digitButtons.forEach((button) => {
                 operatorWasLastEntry = false;
                 equalsWasLastEntry = false;
             }
-            addDisplayContent(button.id)
+            addDisplayContent(button.id);
         } else {
             if (operatorWasLastEntry) {
                 clear();
                 operatorWasLastEntry = false;
                 equalsWasLastEntry = false;
             }
-            setDisplayContent(button.id)
+            setDisplayContent(button.id);
         }
     });
 });
 
+// colorful box shadow animation button
 const funButton = document.querySelector("#fun");
 funButton.addEventListener("click", () => {
     calcBody.classList.remove('animate'); 
     void calcBody.offsetWidth; // trigger a reflow to reset the animation <- this line is from chatgpt
     calcBody.classList.add('animate'); 
+});
+
+// convert to percentage decimal
+const percentButton = document.querySelector("#percent");
+percentButton.addEventListener("click", () => {
+    setDisplayContent(parseInt(getDisplayContent()) / 100);
+});
+
+// toggle sign
+positive = true;
+const signToggle = document.querySelector("#signToggle");
+signToggle.addEventListener("click", () => {
+    setDisplayContent(parseInt(getDisplayContent() * (-1)));
 });
