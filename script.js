@@ -1,3 +1,7 @@
+// references to elements
+const calcBody = document.querySelector("#calculator");
+const display = document.querySelector("#display");
+const displayContent = document.querySelector("#displayContent");
 
 // operation functions
 function addOperation(num1, num2){
@@ -13,11 +17,17 @@ function divideOperation(num1, num2){
     // prevent division by 0
     if (num2 != 0) {
         return parseFloat((num1 / num2).toFixed(13));
-    }
+    } 
     else {
+        console.log("divie by 0 detected");
+        dividebyZero()
         return "Go hit the math textbooks.";
     }
     
+}
+
+function dividebyZero() {
+    displayContent.textContent = "Go hit the math textbooks.";
 }
 
 function operate(num1, operator, num2){
@@ -32,11 +42,6 @@ function operate(num1, operator, num2){
             return divideOperation(num1, num2);
     }
 }
-
-// references to elements
-const calcBody = document.querySelector("#calculator");
-const display = document.querySelector("#display");
-const displayContent = document.querySelector("#displayContent");
 
 // functions to get, set, and modify the display's content
 function getDisplayContent() {
