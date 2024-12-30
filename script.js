@@ -11,7 +11,7 @@ function multiplyOperation(num1, num2){
 }
 function divideOperation(num1, num2){
     if (num2 != 0) {
-        return parseFloat((num1 / num2).toFixed(5));
+        return parseFloat((num1 / num2).toFixed(13));
     }
     else {
         return "Go hit the math textbooks.";
@@ -41,12 +41,14 @@ const displayContent = document.querySelector("#displayContent");
 function getDisplayContent() {
     return displayContent.textContent;
 }
+const maxDisplayChars = 13;
 function setDisplayContent(content) {
-    if (display.textContent.length < maxDisplayChars) {
+    lengthOfNum = content.toString().length;
+    if (lengthOfNum < maxDisplayChars) {
+        console.log(content);
         displayContent.textContent = content;
     }
 }
-const maxDisplayChars = 13;
 function addDisplayContent(content) {
     if (display.textContent.length < maxDisplayChars) {
         displayContent.textContent += content;
