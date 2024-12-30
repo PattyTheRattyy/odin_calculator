@@ -147,7 +147,9 @@ digitButtons.forEach((button) => {
                 operatorWasLastEntry = false;
                 equalsWasLastEntry = false;
             }
-            addDisplayContent(button.id);
+            if (button.id != "." || button.id == "." && !getDisplayContent().includes(".")) {
+                addDisplayContent(button.id);
+            }
         } else {
             if (operatorWasLastEntry) {
                 clear();
