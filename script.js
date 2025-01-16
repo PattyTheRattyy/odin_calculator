@@ -16,7 +16,7 @@ function multiplyOperation(num1, num2){
 function divideOperation(num1, num2){
     // prevent division by 0
     if (num2 != 0) {
-        return parseFloat((num1 / num2).toFixed(13));
+        return parseFloat(num1 / num2).toFixed(5);
     } 
     else {
         console.log("divie by 0 detected");
