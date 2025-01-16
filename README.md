@@ -1,0 +1,1 @@
+This calculator handles basic operations while also ensuring invalid input is ignored/rejected. There are some additional features like a clear button, plus or minus button, percent, and a **fun** button (denoted by a question mark "?").
